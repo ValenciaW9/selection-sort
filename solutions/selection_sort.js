@@ -1,84 +1,65 @@
 function selectionSort(arr) {
-  const sorted = [];
+  for (let i = 0; i < arr.length - 1; i++) {
+    let minIndex = i;
 
-  while (arr.length > 0) {
-    const min = Math.min(...arr);
-    const idx = arr.indexOf(min);
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[minIndex]) {
+        minIndex = j;
+      }
+    }
 
-    sorted.push(min);
-    arr.splice(idx, 1);
+    if (minIndex !== i) {
+      let temp = arr[i];
+      arr[i] = arr[minIndex];
+      arr[minIndex] = temp;
+    }
   }
 
-  return sorted;
+  return arr;
 }
 
-if (require.main === module) {
-  // add your own tests in here
-  console.log("Expecting: [-1, 2, 3, 5]");
-  console.log(selectionSort([3, -1, 5, 2]));
+console.log(selectionSort([10, 4, 3, 2, 1, 5])); // Expected output: [1, 2, 3, 4, 5, 10]
+console.log(selectionSort([-1, -2, 4, 2])); // Expected output: [-2, -1, 2, 4]
+console.log(selectionSort([3, -1, 5, 2])); // Expected output: [-1, 2, 3, 5]
 
-  console.log("");
 
-  console.log("Expecting: []");
-  console.log(selectionSort([]));
 
-  console.log("");
 
-  console.log("Expecting: [-1]");
-  console.log(selectionSort([-1]));
+// Please add your pseudocode:
+function selectionSort(arr):
+    for i from 0 to length of arr - 1:
+        minIndex = i
 
-  console.log("");
+        for j from i + 1 to length of arr:
+            if arr[j] < arr[minIndex]:
+                minIndex = j
 
-  console.log("Expecting: [-10, 2, 2, 3, 7]");
-  console.log(selectionSort([3, 2, 2, 7, -10]));
+        if minIndex is not equal to i:
+            swap arr[i] with arr[minIndex]
 
-  console.log("");
+    return arr
+//Continued pseudocode:
+//The selectionSort function takes an array arr as input.
 
-  console.log("Expecting: [100, 200]");
-  console.log(selectionSort([100, 200]));
+//We use a for loop to iterate through the array from index 0 to the second-to-last index (length of arr - 1).
 
-  console.log("");
+//Inside the for loop, we initialize minIndex to the current index i.
 
-  // BENCHMARK HERE, and print the average runtime
-  const longInput = [];
+//We then use another for loop to iterate from i + 1 to the end of the array.
 
-  for (let i = 0; i < 100; ++i) {
-    longInput.push(Math.random());
-  }
+//In the inner for loop, we compare each element with the element at minIndex. If we find a smaller element, we update minIndex to the current index j.
 
-  const startTime = Date.now();
+//After the inner for loop finishes, we check if minIndex is different from i. If it is, we swap the element at index i with the element at minIndex to move the minimum element to its correct position.
 
-  for (let i = 0; i < 1000; ++i) {
-    selectionSort([2, 1]);
-    selectionSort(longInput);
-  }
-
-  const avgTime = (Date.now() - startTime) / 2000;
-
-  console.log(avgTime);
-}
-
-module.exports = selectionSort;
-
-// Please add your pseudocode to this file
-/***************************************************************************
- * initialize an empty Array called sorted
- * 
- * loop array length times:
- *    store minimum value in array in min
- *    remove minimum value from input array
- *    push min onto sorted
- * 
- * return sorted
-****************************************************************************/
+//Lastly, we return the sorted array arr.
 
 // And a written explanation of your solution
-/****************************************************************************
- * The selection sort algorithm states that we need to find the minimum value 
- * of the input array and place it in another array until all of the values have
- * been placed. This means I can find the minimum in the input, remove it from the
- * input, and push it onto another array in order to sort the values. The first time
- * I find the minimum in the input, that's the lowest value, the second time I find
- * the minimum, that's the second lowest value, and so on. Once the input array is  
- * empty, the sorting is complete.
- * **************************************************************************/
+//Rewrite the problem in your own words
+//Validate that you understand the problem
+//Write your own test cases
+// For this task, we are also asking you to calculate the average runtime of your solution. In other words, you run it a bunch of times and then divide the total time it took for the solution to run by the number of times it ran.
+//Here is the pseudocode for creating your own basic benchmarking procedure:store the current time in a variable called start time
+//loop 1000 times:
+ // execute the method using a small input, e.g. three items if input is an Array
+ // execute the method using a larger input, e.g. 100 items if input is an Array
+//average runtime = (current time - start time) / 2000
